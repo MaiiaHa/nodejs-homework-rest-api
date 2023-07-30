@@ -6,6 +6,7 @@ const {
   login,
   getCurrent,
   logout,
+  updateSubscription,
 } = require("../../controllers/auth");
 const router = express.Router();
 
@@ -20,5 +21,13 @@ router.get("/current", authenticate, getCurrent);
 
 // logout
 router.post("/logout", authenticate, logout);
+
+// subscription =====
+router.patch(
+  "/subscription",
+  authenticate,
+  validateBody(schemas.updateFavoriteSubscriptionSchema),
+  updateSubscription
+);
 
 module.exports = router;
