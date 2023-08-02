@@ -1,6 +1,6 @@
-const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 
+const { Schema, model } = require("mongoose");
 const { handleMongooseError } = require("../helpers");
 
 const contactSchema = new Schema(
@@ -21,6 +21,11 @@ const contactSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -37,6 +42,7 @@ const addSchema = Joi.object({
 const updateFavoriteSchema = Joi.object({
   favorite: Joi.boolean().required(),
 });
+
 const schemas = { addSchema, updateFavoriteSchema };
 const Contact = model("contact", contactSchema);
 // mongoose understand plurals
