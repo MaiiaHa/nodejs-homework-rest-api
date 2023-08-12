@@ -30,9 +30,9 @@ transport
 // const sgMail = require("@sendgrid/mail");
 // require("dotenv").config();
 
-// const { SANDGRID_API_KEY } = process.env;
+// const { SENDGRID_API_KEY } = process.env;
 
-// sgMail.setApiKey(SANDGRID_API_KEY);
+// sgMail.setApiKey(SENDGRID_API_KEY);
 
 // const sendEmail = async (data) => {
 //   const email = { ...data, from: "maiia.robeiko@ukr.net" };
