@@ -1,46 +1,19 @@
-const nodemailer = require("nodemailer");
-require("dotenv").config();
-const { META_PASSWORD } = process.env;
-
-const nodemailerConfig = {
-  host: "smtp.meta.ua",
-  port: 465, // could be 25, 465, 2525
-  secure: true,
-  auth: {
-    user: "maiia.robeiko@meta.ua",
-    pass: META_PASSWORD,
-  },
-};
-
-const transport = nodemailer.createTransport(nodemailerConfig);
-
-const email = {
-  to: "vijahem381@v1zw.com",
-  from: "maiia.robeiko@meta.ua",
-  subject: "test email",
-  html: "<p><strong>Test email </strong>from localhost:3000</p>",
-};
-
-transport
-  .sendMail(email)
-  .then(() => console.log("Email send success"))
-  .catch((error) => console.log(error.message));
-
 // ===== 1v via Sendgrid https://app.sendgrid.com/
-// const sgMail = require("@sendgrid/mail");
-// require("dotenv").config();
 
-// const { SENDGRID_API_KEY } = process.env;
+const sgMail = require("@sendgrid/mail");
+require("dotenv").config();
 
-// sgMail.setApiKey(SENDGRID_API_KEY);
+const { SENDGRID_API_KEY } = process.env;
 
-// const sendEmail = async (data) => {
-//   const email = { ...data, from: "maiia.robeiko@ukr.net" };
-//   await sgMail.send(email);
-//   return true;
-// };
+sgMail.setApiKey(SENDGRID_API_KEY);
 
-// module.exports = sendEmail;
+const sendEmail = async (data) => {
+  const email = { ...data, from: "kardmitriy@gmail.com" };
+  await sgMail.send(email);
+  return true;
+};
+
+module.exports = sendEmail;
 
 // ===== can be used
 
@@ -53,5 +26,35 @@ transport
 
 // sgMail
 //   .send(email)
+//   .then(() => console.log("Email send success"))
+//   .catch((error) => console.log(error.message));
+
+// ===== 2v via Nodemailer https://app.sendgrid.com/
+
+// const nodemailer = require("nodemailer");
+// require("dotenv").config();
+// const { META_PASSWORD } = process.env;
+
+// const nodemailerConfig = {
+//   host: "smtp.meta.ua",
+//   port: 465, // could be 25, 465, 2525
+//   secure: true,
+//   auth: {
+//     user: "maiia.robeiko@meta.ua",
+//     pass: META_PASSWORD,
+//   },
+// };
+
+// const transport = nodemailer.createTransport(nodemailerConfig);
+
+// const email = {
+//   to: "vijahem381@v1zw.com",
+//   from: "maiia.robeiko@meta.ua",
+//   subject: "test email",
+//   html: "<p><strong>Test email </strong>from localhost:3000</p>",
+// };
+
+// transport
+//   .sendMail(email)
 //   .then(() => console.log("Email send success"))
 //   .catch((error) => console.log(error.message));
